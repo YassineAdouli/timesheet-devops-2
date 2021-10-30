@@ -37,6 +37,7 @@ public class User implements Serializable {
 	
 	public User() {	}
 
+	//table user 
 	public User(String firstName, String lastName, Date dateNaissance, Role role) {
 		super();
 		this.firstName = firstName;
