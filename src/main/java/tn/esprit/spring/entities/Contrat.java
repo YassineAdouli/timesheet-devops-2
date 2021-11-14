@@ -21,20 +21,17 @@ public class Contrat implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	//@SequenceGenerator(name="seq")
 	private int reference;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	
-	//@Column(name="TYPE_CTR", nullable=true )
 	private String typeContrat;
 	
 	@Transient 
 	private float telephone;
 	
 	@JsonIgnore
-	//@JsonBackReference
 	@OneToOne(mappedBy="contrat")
 	private Employe employe;
 

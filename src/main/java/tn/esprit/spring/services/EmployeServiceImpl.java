@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.repository.EmployeRepository;
 
 @Service
@@ -25,9 +26,7 @@ public class EmployeServiceImpl implements IEmployeService {
 			L.info("In Method retrieveAllEmployes :");
 			employes = (List<Employe>) employeRepository.findAll();
 			L.debug("Connexion à la BD Ok :");
-			for (Employe employe : employes) {
-				L.debug("employe :" + employe.getNom());
-			} 
+			
 			L.info("Out of Method retrieveAllEmployes with Success");
 		}catch (Exception e) {
 			L.error("Out of Method retrieveAllEmployes withh Errors :" + e);
@@ -46,16 +45,35 @@ public class EmployeServiceImpl implements IEmployeService {
 	@Override
 	public void deleteEmploye(String id) {
 		L.info("In Method deleteEmploye :");
-		employeRepository.deleteById(Long.parseLong(id)); 
+		employeRepository.deleteById(Long.parseLong(id));
 		L.info("Out of Method deleteEmploye with Success");				
 	}
 
 	@Override
 	public Employe updateEmploye(Employe e) {
+		
 		L.info("In Method updateEmploye :");
-		Employe u_saved = employeRepository.save(e); 
+		boolean u_saved = employeRepository.existsById(e.getId()); 
+		if (u_saved)
+		{
+			String prenom = e.getPrenom();
+			String nom = e.getNom();
+			String email = e.getEmail();
+			Long idd = e.getId();
+			String password = e.getPassword();
+			Boolean act = e.isActif();
+			Role role = e.getRole();
+		e.setNom(prenom);
+		e.setPrenom(prenom);
+		e.setId(idd);
+		e.setEmail(email);
+		e.setPassword(password);
+		e.setActif(act);
+		e.setRole(role);
+		}
+		Employe u = employeRepository.save(e);
 		L.info("Out of Method updateEmploye with Success");
-		return u_saved; 
+		return u; 
 	}
 
 	@Override

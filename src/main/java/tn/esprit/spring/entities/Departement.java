@@ -26,7 +26,6 @@ public class Departement implements Serializable {
 	
 	private String name;
 	
-	//@JsonManagedReference 
 	@JsonIgnore
 	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Employe> employes;

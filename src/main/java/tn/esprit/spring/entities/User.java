@@ -23,8 +23,6 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;   
-	//bo
-	//@Column(name="USR_FIRST_NAME", length=20, unique=true, nullable=false)
 	private String firstName; 
 	
 	private String lastName;
@@ -37,8 +35,6 @@ public class User implements Serializable {
 	
 	public User() {	}
 
-	//table user 
-	//table user management
 	public User(String firstName, String lastName, Date dateNaissance, Role role) {
 		super();
 		this.firstName = firstName;
@@ -90,6 +86,4 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-
 }
